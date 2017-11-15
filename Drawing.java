@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 public class Drawing extends Application{
 
 	GraphicsContext gc = null;
+	Boolean[] isFilled = new Boolean[9];
 
 	public static void main(String[] args) {
 		launch(args);
@@ -32,6 +33,9 @@ public class Drawing extends Application{
 		root.setRight(ticTacToe);
 		gc = ticTacToe.getGraphicsContext2D();
 		divideBoard(gc);
+		for (int i = 0;i < 9; i++) {
+			isFilled[i] = false;
+		} // end of for loop
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
@@ -50,57 +54,96 @@ public class Drawing extends Application{
 
 		@Override
 		public void handle (MouseEvent e) {
-			timesClicked++;
+			Boolean tookATurn = false;
 			if (timesClicked % 2 == 1) {
-				if (e.getX() <= 300 && e.getY() <= 300) {
+				if (e.getX() <= 300 && e.getY() <= 300 && isFilled[0] == false) {
 					gc.strokeLine(10, 10, 290, 290);
 					gc.strokeLine(290, 10, 10, 290);
-				} else if (e.getX() > 300 && e.getX() <= 600 && e.getY() <= 300) {
+					isFilled[0] = true;
+					tookATurn = true;
+				} else if (e.getX() > 300 && e.getX() <= 600 && e.getY() <= 300 && isFilled[1] == false) {
 					gc.strokeLine(310, 10, 590, 290);
 					gc.strokeLine(590, 10, 310, 290);
-				} else if (e.getX() > 600 && e.getX() <= 900 && e.getY() <= 300) {
+					isFilled[1] = true;
+					tookATurn = true;
+				} else if (e.getX() > 600 && e.getX() <= 900 && e.getY() <= 300 && isFilled[2] == false) {
 					gc.strokeLine(610, 10, 890, 290);
 					gc.strokeLine(890, 10, 610, 290);
-				} else if (e.getX() <= 300 && e.getY() > 300 && e.getY() <= 600) {
+					isFilled[2] = true;
+					tookATurn = true;
+				} else if (e.getX() <= 300 && e.getY() > 300 && e.getY() <= 600 && isFilled[3] == false) {
 					gc.strokeLine(10, 310, 290, 590);
 					gc.strokeLine(10, 590, 290, 310);
-				} else if (e.getX() > 300 && e.getX() <= 600 && e.getY() > 300 && e.getY() <= 600) {
+					isFilled[3] = true;
+					tookATurn = true;
+				} else if (e.getX() > 300 && e.getX() <= 600 && e.getY() > 300 && e.getY() <= 600 && isFilled[4] == false) {
 					gc.strokeLine(310, 310, 590, 590);
 					gc.strokeLine(590, 310, 310, 590);
-				} else if (e.getX() > 600 && e.getX() <= 900 && e.getY() > 300 && e.getY() <= 600){
+					isFilled[4] = true;
+					tookATurn = true;
+				} else if (e.getX() > 600 && e.getX() <= 900 && e.getY() > 300 && e.getY() <= 600 && isFilled[5] == false){
 					gc.strokeLine(610, 310, 890, 590);
 					gc.strokeLine(890, 310, 610, 590);
-				} else if (e.getX() <= 300 && e.getY() > 600 && e.getY() <= 900) {
+					isFilled[5] = true;
+					tookATurn = true;
+				} else if (e.getX() <= 300 && e.getY() > 600 && e.getY() <= 900 && isFilled[6] == false) {
 					gc.strokeLine(10, 610, 290, 890);
 					gc.strokeLine(290, 610, 10, 890);
-				} else if (e.getX() > 300 && e.getX() <= 600 && e.getY() > 600 && e.getY() <= 900) {
+					isFilled[6] = true;
+					tookATurn = true;
+				} else if (e.getX() > 300 && e.getX() <= 600 && e.getY() > 600 && e.getY() <= 900 && isFilled[7] == false) {
 					gc.strokeLine(310, 610, 590, 890);
 					gc.strokeLine(590, 610, 310, 890);
-				} else if (e.getX() > 600 && e.getX() <= 900 && e.getY() > 600 && e.getY() <= 900) {
+					isFilled[7] = true;
+					tookATurn = true;
+				} else if (e.getX() > 600 && e.getX() <= 900 && e.getY() > 600 && e.getY() <= 900 && isFilled[8] == false) {
 					gc.strokeLine(610, 610, 890, 890);
 					gc.strokeLine(890, 610, 610, 890);
+					isFilled[8] = true;
+					tookATurn = true;
 				}
 			} else {
-				if (e.getX() <= 300 && e.getY() <= 300) {
+				if (e.getX() <= 300 && e.getY() <= 300 && isFilled[0] == false) {
 					gc.strokeOval(10, 10, 280, 280);
-				} else if (e.getX() > 300 && e.getX() <= 600 && e.getY() <= 300) {
+					isFilled[0] = true;
+					tookATurn = true;
+				} else if (e.getX() > 300 && e.getX() <= 600 && e.getY() <= 300 && isFilled[1] == false) {
 					gc.strokeOval(310, 10, 280, 280);
-				} else if (e.getX() > 600 && e.getX() <= 900 && e.getY() <= 300) {
+					isFilled[1] = true;
+					tookATurn = true;
+				} else if (e.getX() > 600 && e.getX() <= 900 && e.getY() <= 300 && isFilled[2] == false) {
 					gc.strokeOval(610, 10, 280, 280);
-				} else if (e.getX() <= 300 && e.getY() > 300 && e.getY() <= 600) {
+					isFilled[2] = true;
+					tookATurn = true;
+				} else if (e.getX() <= 300 && e.getY() > 300 && e.getY() <= 600 && isFilled[3] == false) {
 					gc.strokeOval(10, 310, 280, 280);
-				} else if (e.getX() > 300 && e.getX() <= 600 && e.getY() > 300 && e.getY() <= 600) {
+					isFilled[3] = true;
+					tookATurn = true;
+				} else if (e.getX() > 300 && e.getX() <= 600 && e.getY() > 300 && e.getY() <= 600 && isFilled[4] == false) {
 					gc.strokeOval(310, 310, 280, 280);
-				} else if (e.getX() > 600 && e.getX() <= 900 && e.getY() > 300 && e.getY() <= 600){
+					isFilled[4] = true;
+					tookATurn = true;
+				} else if (e.getX() > 600 && e.getX() <= 900 && e.getY() > 300 && e.getY() <= 600 && isFilled[5] == false){
 					gc.strokeOval(610, 310, 280, 280);
-				} else if (e.getX() <= 300 && e.getY() > 600 && e.getY() <= 900) {
+					isFilled[5] = true;
+					tookATurn = true;
+				} else if (e.getX() <= 300 && e.getY() > 600 && e.getY() <= 900 && isFilled[6] == false) {
 					gc.strokeOval(10, 610, 280, 280);
-				} else if (e.getX() > 300 && e.getX() <= 600 && e.getY() > 600 && e.getY() <= 900) {
+					isFilled[6] = true;
+					tookATurn = true;
+				} else if (e.getX() > 300 && e.getX() <= 600 && e.getY() > 600 && e.getY() <= 900 && isFilled[7] == false) {
 					gc.strokeOval(310, 610, 280, 280);
-				} else if (e.getX() > 600 && e.getX() <= 900 && e.getY() > 600 && e.getY() <= 900) {
+					isFilled[7] = true;
+					tookATurn = true;
+				} else if (e.getX() > 600 && e.getX() <= 900 && e.getY() > 600 && e.getY() <= 900 && isFilled[8] == false) {
 					gc.strokeOval(610, 610, 280, 280);
+					isFilled[8] = true;
+					tookATurn = true;
 				} // end of inner if
 			} // end of outer if
+			if (tookATurn = true) {
+				timesClicked++;
+			} // end of if
 		} // end of handle
 	} // end of MyMouseEvent class
 
@@ -116,6 +159,9 @@ public class Drawing extends Application{
 			gc.clearRect(10, 610, 285, 285);
 			gc.clearRect(310, 610, 285, 285);
 			gc.clearRect(610, 610, 285, 285);
+			for (int i = 0;i < 9; i++) {
+				isFilled[i] = false;
+			} // end of for loop
 		} // end of handle method
 	} // end of MyActionEvent class
 } // end of Drawing class
